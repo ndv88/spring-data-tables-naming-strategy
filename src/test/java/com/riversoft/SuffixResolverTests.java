@@ -1,5 +1,5 @@
 package com.riversoft;
-import com.riversoft.data.RiversoftTableNamingStrategy.TransformerToPluralForm;
+import com.riversoft.data.naming_strategies.RiversoftTableNamingStrategy.TransformerToPluralForm;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

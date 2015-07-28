@@ -1,4 +1,4 @@
-package com.riversoft.data;
+package com.riversoft.data.naming_strategies;
 
 import com.riversoft.builders.IncorrectNounsExclusionResolverBuilder;
 

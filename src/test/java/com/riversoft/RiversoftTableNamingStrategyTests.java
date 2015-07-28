@@ -2,7 +2,7 @@ package com.riversoft;
 
 
 import com.riversoft.builders.IncorrectNounsExclusionResolverBuilder;
-import com.riversoft.data.RiversoftTableNamingStrategy;
+import com.riversoft.data.naming_strategies.RiversoftTableNamingStrategy;
 import com.riversoft.resolvers.Impl.IncorrectNounsExclusionResolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
