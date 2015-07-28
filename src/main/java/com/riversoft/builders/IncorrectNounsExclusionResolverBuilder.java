@@ -15,7 +15,7 @@ public class IncorrectNounsExclusionResolverBuilder {
         return this;
     }
 
-    public IncorrectNounsExclusionResolverBuilder addWord(String word, Boolean unique) {
+    public IncorrectNounsExclusionResolverBuilder addWord(String word) {
         words.put(word, word);
         return this;
     }

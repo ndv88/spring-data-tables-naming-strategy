@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RiversoftNamingStrategyApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(RiversoftNamingStrategyApplication.class, args);
     }
+
+
 }

@@ -21,7 +21,7 @@ public class RiversoftTableNamingStrategyTests {
 
         IncorrectNounsExclusionResolver resolver = new IncorrectNounsExclusionResolverBuilder().addWord("details", "details").build();
         RiversoftTableNamingStrategy namingStrategy = new RiversoftTableNamingStrategy();
-        namingStrategy.setSpellExclusionResolver(resolver);
+
 
         String expected = namingStrategy.transformToPluralForm("details");
         assertEquals(expected, "details");

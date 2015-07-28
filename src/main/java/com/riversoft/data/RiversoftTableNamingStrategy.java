@@ -1,33 +1,25 @@
 package com.riversoft.data;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.riversoft.resolvers.SpellExclusionResolver;
 import org.hibernate.cfg.ImprovedNamingStrategy;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
 
     private static final long serialVersionUID = 1L;
-    private final TransformerToPluralForm transformerToPluralForm;
-
-    private SpellExclusionResolver spellExclusionResolver;
+    private final TransformerToPluralForm transformerToPluralForm = new TransformerToPluralForm();
 
     public RiversoftTableNamingStrategy() {
-        this(null);
-    }
-
-    public RiversoftTableNamingStrategy(SpellExclusionResolver spellExclusionResolver) {
         super();
-        transformerToPluralForm = new TransformerToPluralForm();
-        this.spellExclusionResolver = spellExclusionResolver;
+        this.initializeSpellExclusionResolver();
     }
 
-    public void setSpellExclusionResolver(SpellExclusionResolver spellExclusionResolver) {
-        this.spellExclusionResolver = spellExclusionResolver;
+    protected SpellExclusionResolver spellExclusionResolver;
+
+    protected void initializeSpellExclusionResolver() {
+        this.spellExclusionResolver = null;
     }
 
     @Override
@@ -66,7 +58,7 @@ public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
             } else if (PATTERN_S.matcher(word).find()) {
                 return word + SUFFIX_S;
             } else if (PATTERN_IES.matcher(word).find()) {
-                return  word.substring(0, word.length() - 1) + SUFFIX_IES;
+                return word.substring(0, word.length() - 1) + SUFFIX_IES;
             }
 
             Matcher matcher = PATTERN_VES.matcher(word);
