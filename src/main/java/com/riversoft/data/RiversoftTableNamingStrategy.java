@@ -33,6 +33,10 @@ public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
     @Override
     public String classToTableName(String className) {
         String tableNameInSingularForm = super.classToTableName(className);
+        return transformToPluralForm(tableNameInSingularForm);
+    }
+
+    public String transformToPluralForm(String tableNameInSingularForm) {
 
         if (spellExclusionResolver != null) {
             String result = spellExclusionResolver.resolve(tableNameInSingularForm);
@@ -40,12 +44,6 @@ public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
                 return result;
             }
         }
-
-        return transformToPluralForm(tableNameInSingularForm);
-    }
-
-    private String transformToPluralForm(String tableNameInSingularForm) {
-
 
         return transformerToPluralForm.transform(tableNameInSingularForm);
     }

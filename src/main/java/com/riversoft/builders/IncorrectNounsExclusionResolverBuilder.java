@@ -10,12 +10,12 @@ public class IncorrectNounsExclusionResolverBuilder {
 
     private Map<String, String> words = new HashMap<>();
 
-    IncorrectNounsExclusionResolverBuilder addWord(String src, String dist) {
+    public IncorrectNounsExclusionResolverBuilder addWord(String src, String dist) {
         words.put(src, dist);
         return this;
     }
 
-    IncorrectNounsExclusionResolverBuilder addWord(String word, Boolean unique) {
+    public IncorrectNounsExclusionResolverBuilder addWord(String word, Boolean unique) {
         words.put(word, word);
         return this;
     }
