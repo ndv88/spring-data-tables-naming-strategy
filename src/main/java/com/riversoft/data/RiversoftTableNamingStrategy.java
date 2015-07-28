@@ -22,13 +22,14 @@ public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
     }
 
     private String transformToPluralForm(String tableNameInSingularForm) {
-
         String origiSufix = tableNameInSingularForm.substring(
-                tableNameInSingularForm.length() - 1,
+                tableNameInSingularForm.length() - 2,
                 tableNameInSingularForm.length());
 
-        tableNameInSingularForm += suffixResolver.resolve(origiSufix);
-        return tableNameInSingularForm;
+        String modifiedSufix = suffixResolver.resolve(origiSufix);
+        return tableNameInSingularForm.substring(0,
+                tableNameInSingularForm.length() - modifiedSufix.length())
+                + modifiedSufix;
     }
 
     static class SuffixResolver {
