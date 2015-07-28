@@ -1,27 +1,52 @@
 package com.riversoft.data;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.riversoft.resolvers.SpellExclusionResolver;
 import org.hibernate.cfg.ImprovedNamingStrategy;
 
 public class RiversoftTableNamingStrategy extends ImprovedNamingStrategy {
 
     private static final long serialVersionUID = 1L;
-    private TransformerToPluralForm transformerToPluralForm;
+    private final TransformerToPluralForm transformerToPluralForm;
+
+    private SpellExclusionResolver spellExclusionResolver;
 
     public RiversoftTableNamingStrategy() {
+        this(null);
+    }
+
+    public RiversoftTableNamingStrategy(SpellExclusionResolver spellExclusionResolver) {
         super();
         transformerToPluralForm = new TransformerToPluralForm();
+        this.spellExclusionResolver = spellExclusionResolver;
+    }
+
+    public void setSpellExclusionResolver(SpellExclusionResolver spellExclusionResolver) {
+        this.spellExclusionResolver = spellExclusionResolver;
     }
 
     @Override
     public String classToTableName(String className) {
         String tableNameInSingularForm = super.classToTableName(className);
+
+        if (spellExclusionResolver != null) {
+            String result = spellExclusionResolver.resolve(tableNameInSingularForm);
+            if (result != null) {
+                return result;
+            }
+        }
+
         return transformToPluralForm(tableNameInSingularForm);
     }
 
     private String transformToPluralForm(String tableNameInSingularForm) {
+
+
         return transformerToPluralForm.transform(tableNameInSingularForm);
     }
 
